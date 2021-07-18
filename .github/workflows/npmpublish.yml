@@ -1,0 +1,31 @@
+name: Publish
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          always-auth: true
+          node-version: 15
+          registry-url: https://npm.pkg.github.com
+          scope: "@bugfixes"
+      - name: install deps
+        run: npm install --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: post install
+        run: |
+          npm rebuild
+          npm run prepare --if-present
+      - name: tests
+        run: npm tests
+      - name: publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
