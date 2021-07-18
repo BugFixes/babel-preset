@@ -1,3 +1,3 @@
 module.exports = {
-  extends: '@bugfixes'
+  extends: '@bugfixes',
 }

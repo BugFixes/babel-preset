@@ -24,7 +24,7 @@ jobs:
           npm rebuild
           npm run prepare --if-present
       - name: tests
-        run: npm tests
+        run: npm test
       - name: publish
         run: npm publish
         env:

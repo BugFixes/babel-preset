@@ -1,3 +1,3 @@
 module.exports = {
-  header: '# Changelog\n\All notable changes\n'
+  header: '# Changelog\nAll notable changes\n',
 }

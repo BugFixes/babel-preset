@@ -1,20 +1,20 @@
 const {
-  declare
+  declare,
 } = require('@babel/helper-plugin-utils')
 
 function getReactRemovePropTypesPluginConfig() {
   return {
-    mode: 'unsafe-wrap'
+    mode: 'unsafe-wrap',
   }
 }
 
 function getInlineEnvVarsPluginConfig(api, options) {
   const {
-    environmentVars = []
+    environmentVars = [],
   } = options
 
   return {
-    include: environmentVars
+    include: environmentVars,
   }
 }
 
@@ -34,7 +34,7 @@ function getStyledComponentsPluginConfig(api) {
 
 function getTransformRuntimePluginConfig(api, options) {
   const {
-    useRuntimeESModules = false
+    useRuntimeESModules = false,
   } = options
 
   return {
@@ -50,7 +50,7 @@ function getEnvPresetConfig(api, options) {
     return caller.supportStaticESM
   })
   const {
-    target, useESModules = supportModules
+    target, useESModules = supportModules,
   } = options
 
   return {
@@ -59,7 +59,7 @@ function getEnvPresetConfig(api, options) {
     modules: useESModules ? false : 'commonjs',
     shippedProposals: true,
     targets: [
-      target === 'node' ? 'current node' : 'extends @bugfixes/browerslist-config'
+      target === 'node' ? 'current node' : 'extends @bugfixes/browerslist-config',
     ],
     useBuiltIns: 'usage',
   }
@@ -93,9 +93,9 @@ module.exports = declare(function (api, options = {}) {
           [
             require('@babel/preset-react'),
             {
-              runtime: 'automatic'
-            }
-          ]
+              runtime: 'automatic',
+            },
+          ],
         ],
         test: /\.tsx?$/,
       },
@@ -110,18 +110,9 @@ module.exports = declare(function (api, options = {}) {
       },
     ],
     plugins: [
-      [
-        require('babel-plugin-transform-inline-enviroment-variables'),
-        getInlineEnvVarsPluginConfig(api, options),
-      ],
-      [
-        require('babel-plugin-styled-components'),
-        getStyledComponentsPluginConfig(api),
-      ],
-      [
-        require('@babel/plugin-transform-runtime'),
-        getTransformRuntimePluginConfig(api, options),
-      ],
+      [require('babel-plugin-transform-inline-enviroment-variables'), getInlineEnvVarsPluginConfig(api, options)],
+      [require('babel-plugin-styled-components'), getStyledComponentsPluginConfig(api)],
+      [require('@babel/plugin-transform-runtime'), getTransformRuntimePluginConfig(api, options)],
     ],
     presets: [
       [
