@@ -46,11 +46,11 @@ function getTransformRuntimePluginConfig(api, options) {
 }
 
 function getEnvPresetConfig(api, options) {
-  const supportModules = api.caller(function (caller) {
-    return caller.supportStaticESM
+  const supportsModules = api.caller(function (caller) {
+    return caller.supportsStaticESM
   })
   const {
-    target, useESModules = supportModules,
+    target, useESModules = supportsModules,
   } = options
 
   return {
@@ -59,7 +59,7 @@ function getEnvPresetConfig(api, options) {
     modules: useESModules ? false : 'commonjs',
     shippedProposals: true,
     targets: [
-      target === 'node' ? 'current node' : 'extends @bugfixes/browerslist-config',
+      target === 'node' ? 'current node' : 'extends @bugfixes/browserslist-config',
     ],
     useBuiltIns: 'usage',
   }
@@ -102,7 +102,7 @@ module.exports = declare(function (api, options = {}) {
       {
         presets: [
           [
-            require('@babel/preset-typescipt'),
+            require('@babel/preset-typescript'),
             getTypeScriptPresetConfig(),
           ],
         ],
@@ -110,7 +110,7 @@ module.exports = declare(function (api, options = {}) {
       },
     ],
     plugins: [
-      [require('babel-plugin-transform-inline-enviroment-variables'), getInlineEnvVarsPluginConfig(api, options)],
+      [require('babel-plugin-transform-inline-environment-variables'), getInlineEnvVarsPluginConfig(api, options)],
       [require('babel-plugin-styled-components'), getStyledComponentsPluginConfig(api)],
       [require('@babel/plugin-transform-runtime'), getTransformRuntimePluginConfig(api, options)],
     ],
