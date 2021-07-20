@@ -1,4 +1,4 @@
-name: Publish
+name: NPM Publish
 on:
   release:
     types:
@@ -25,6 +25,8 @@ jobs:
           npm run prepare --if-present
       - name: tests
         run: npm test
+      - name: update version
+        run: npm --no-git-tag-version version ${GITHUB_REF##*/v}
       - name: publish
         run: npm publish
         env:
