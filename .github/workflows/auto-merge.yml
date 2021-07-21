@@ -1,8 +1,5 @@
 name: auto-merge
 on:
-  push:
-    branches-ignore:
-      - main
   workflow_run:
     types:
       - completed
