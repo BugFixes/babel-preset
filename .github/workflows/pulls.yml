@@ -3,6 +3,7 @@ on:
   push:
     branches-ignore:
       - main
+  pull_request:
 
 jobs:
   test:
@@ -25,3 +26,9 @@ jobs:
           npm run prepare --if-present
       - name: tests
         run: npm test
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fastify/github-action-merge-dependabot@v2.1.1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
