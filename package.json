@@ -35,7 +35,7 @@
     "core-js": "^3.15.2"
   },
   "devDependencies": {
-    "@bugfixes/eslint-config": "^0.0.1",
+    "@bugfixes/eslint-config": "^0.1.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "husky": "^7.0.1",
@@ -48,7 +48,7 @@
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
-    "@bugfixes/browserslist-config": "^0.0.1",
+    "@bugfixes/browserslist-config": "^0.1.0",
     "babel-plugin-styled-components": "^1.13.2",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24"
